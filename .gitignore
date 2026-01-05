@@ -1,0 +1,37 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Git config
+.gitpub/
+
+# Data files
+data/ekavica/
+data/ijekavica/
+
+# Docs
+docs/
+
+# Training outputs (temporary artifacts)
+outputs/                   # All training outputs
+!outputs/.gitkeep          # Keep directory structure
+
+# Model checkpoints (large files)
+*.bin                      # PyTorch model weights
+*.safetensors              # SafeTensors format
+*.pt                       # PyTorch checkpoints
+*.pth                      # PyTorch state dict
+*.ckpt                     # Checkpoint files
+
+
+# Keep result files (small, version-controlled)
+!results/**/*.csv
+!results/**/*.json
+!results/**/*.md
