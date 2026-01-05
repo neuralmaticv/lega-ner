@@ -2,6 +2,7 @@ import gc
 import json
 import random
 import warnings
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -13,16 +14,27 @@ from sklearn.model_selection import KFold
 
 warnings.filterwarnings(action='ignore', category=UserWarning, module='seqeval')
 
+# Setup paths
+PROJECT_ROOT = Path(__file__).parent.parent
+OUTPUT_DIR = PROJECT_ROOT / "outputs" / "reference"
+RESULTS_DIR = PROJECT_ROOT / "results" / "reference"
+
+# Create directories
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
 RANDOM_SEED = 64
 
-MODEL_INDEX = 1 # 0: BERTic, 1: SrBERTa
+MODEL_INDEX = 0 # 0: BERTic, 1: SrBERTa
 MODEL_TYPE = ["electra", "roberta"]
 MODEL_NAME = ["classla/bcms-bertic", "nemanjaPetrovic/SrBERTa"]
 
 DIALECT = 0 # 0: EKAVICA, 1: IJEKAVICA
-DIALECT_NAME = ['Ekavica', 'Ijekavica']
-
-DATA_PATHS = (['../data/comtext.sr.legal.ekavica.conllu'], ['../data/comtext.sr.legal.ijekavica.conllu'])
+DIALECT_NAME = ["Ekavica", "Ijekavica"]
+DATA_PATHS = (
+    [str(PROJECT_ROOT / "data" / "comtext.sr.legal.ekavica.conllu")],
+    [str(PROJECT_ROOT / "data" / "comtext.sr.legal.ijekavica.conllu")]
+)
 
 
 def get_labels(all_data):
@@ -55,6 +67,7 @@ if __name__ == '__main__':
         args["manual_seed"] = RANDOM_SEED
         args["max_seq_length"] = 512
         args["silent"] = True
+        args['output_dir'] = str(OUTPUT_DIR / 'reference_models')  # Save to outputs/
         args['overwrite_output_dir'] = True
         args['reprocess_input_data'] = True
         args['no_cache'] = True
@@ -103,12 +116,12 @@ if __name__ == '__main__':
                                 args=args
                                 )
 
-            print('Model training for ' + str(i) + ' epochs, fold ' + str (fold_index))
+            print(f"Model training for {i} epochs, fold {fold_index}")
             model.train_model(train_df, acc=accuracy_score)
 
-            print('Model evaluation, fold ' + str(fold_index))
+            print(f"Model evaluation, fold {fold_index}")
             msd_result, model_outputs, preds_list = model.eval_model(test_df, acc=accuracy_score)
-            print('NER accuracy after fine-tuning for ' + str(i) + ' epochs, fold ' + str(fold_index) + ':')
+            print(f"NER accuracy after fine-tuning for {i} epochs, fold {fold_index}:")
             print(msd_result)
 
             results[i].append(msd_result)
@@ -118,6 +131,11 @@ if __name__ == '__main__':
             gc.collect()
             torch.cuda.empty_cache()
 
-    with open('results_pretokenized_CV_' + MODEL_NAME[MODEL_INDEX].split('/')[1] + '_' + DIALECT_NAME[DIALECT]
-              + '.json', 'w') as outfile:
+    # Save results
+    results_filename = f"results_pretokenized_CV_{MODEL_NAME[MODEL_INDEX].split('/')[1]}_{DIALECT_NAME[DIALECT]}.json"
+    results_path = RESULTS_DIR / results_filename
+
+    with open(results_path, 'w') as outfile:
         json.dump(results, outfile)
+
+    print(f"\nResults saved to: {results_path}")
