@@ -60,21 +60,24 @@ Examples:
         """,
     )
     parser.add_argument(
-        "-m", "--model",
+        "-m",
+        "--model",
         type=int,
         choices=[0, 1],
         default=0,
         help="Model: 0=BERTic (classla/bcms-bertic), 1=SrBERTa (default: 0)",
     )
     parser.add_argument(
-        "-d", "--dialect",
+        "-d",
+        "--dialect",
         type=int,
         choices=[0, 1],
         default=0,
         help="Dialect: 0=Ekavica, 1=Ijekavica (default: 0)",
     )
     parser.add_argument(
-        "-e", "--epochs",
+        "-e",
+        "--epochs",
         type=int,
         default=20,
         help="Number of training epochs (default: 20)",
@@ -96,9 +99,7 @@ if __name__ == "__main__":
     print(f"Dialect: {DIALECT_NAME[dialect]}")
     print(f"Epochs: {num_epochs}")
 
-    X_tokens, wordlist = load_corpus_tokens(
-        DATA_PATHS[dialect], model_name=MODEL_NAME[model_index]
-    )
+    X_tokens, wordlist = load_corpus_tokens(DATA_PATHS[dialect], model_name=MODEL_NAME[model_index], conllup=True)
 
     labels_list = get_labels(X_tokens)
     results = {}
@@ -123,12 +124,6 @@ if __name__ == "__main__":
     train_args["save_model_every_epoch"] = False
     train_args["use_cached_eval_features"] = False
     train_args["do_lower_case"] = False
-
-    # Disable FP16 - known issue with bcms-bertic causing CUBLAS crashes
-    # FP32 provides better numerical stability and reproduces paper results
-    train_args["fp16"] = False
-    train_args["train_batch_size"] = 16
-    train_args["eval_batch_size"] = 32
 
     # workaround for multiprocessing issue
     train_args["use_multiprocessing"] = False
@@ -182,9 +177,7 @@ if __name__ == "__main__":
         model.train_model(train_df, acc=accuracy_score)
 
         print(f"Model evaluation, fold {fold_index}")
-        msd_result, model_outputs, preds_list = model.eval_model(
-            test_df, acc=accuracy_score
-        )
+        msd_result, model_outputs, preds_list = model.eval_model(test_df, acc=accuracy_score)
         print(f"NER accuracy after fine-tuning for {num_epochs} epochs, fold {fold_index}:")
         print(msd_result)
 
