@@ -40,3 +40,8 @@ Anotirani korpusi u **CoNLL-U** formatu:
 - [`data/comtext.sr.legal.ijekavica.conllu`](data/comtext.sr.legal.ijekavica.conllu)
 
 Takođe, skup je dostupan i na Hugging Face platformi - [gradientflow/legal-ner](https://huggingface.co/datasets/gradientflow/legal-ner)
+
+
+## Rezultati
+Rezultati poređenja različitih transformer modela za NER zadatak su dostupni na sljedećem linku [outputs/results/README.md](outputs/results/README.md).
+
