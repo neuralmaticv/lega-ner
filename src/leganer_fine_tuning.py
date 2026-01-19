@@ -68,6 +68,11 @@ MODELS = {
         "display_name": "XLM-R-Bertic",
         "use_cyrillic": False,
     },
+    "Jerteh-355": {
+        "name": "jerteh/Jerteh-355",
+        "display_name": "Jerteh-355",
+        "use_cyrillic": False,
+    },
 }
 
 
@@ -547,7 +552,7 @@ def train_and_evaluate(
     # Setup callbacks based on configuration
     callbacks = []
     if USE_EARLY_STOPPING:
-        callbacks.append(EarlyStoppingCallback(early_stopping_patience=3))
+        callbacks.append(EarlyStoppingCallback(early_stopping_patience=2))
 
     trainer = Trainer(
         model=model,
