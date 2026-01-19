@@ -35,3 +35,7 @@ Modeli su trenirani i evaluirani na **COMtext.SR** skupu podataka.
 | PER | **0.9846** | 0.9779 | 0.9197 | 0.8775 | 0.9504 | 0.9449 | 0.9817 | 0.9766 |
 | REF | **0.8569** | 0.8150 | 0.7965 | 0.6410 | 0.6294 | 0.7718 | 0.6848 | 0.8129 |
 | O | 0.9949 | 0.9949 | 0.9893 | 0.9893 | 0.9944 | 0.9944 | **0.9950** | **0.9950** |
+
+
+**Napomene:**
+Rezultati dostupni u [ner_results_cv_20260117_213012.csv](ner_results_cv_20260117_213012.csv) i [ner_results_cv_20260118_014424.json](ner_results_cv_20260118_014424.json) su kreirani naknadno u cilju dodatne analize i nisu dio zvanične evaluacije. U okviru tih rezultata, dodat je i novi model **Jerteh-355** uz drugačije vrijednosti hiperparametara.
