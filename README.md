@@ -35,7 +35,7 @@ Postoji mogućnost definisanja načina treniranja, koristeći argument `--mode`:
 uv run python src/leganer_fine_tuning.py --mode cv
 ```
 Dostupni načini su:
-- `standard`: Standardno treniranje - fiksni skupovi za treniranje i evaluaciju.
+- `standard` (default): Standardno treniranje - fiksni skupovi za treniranje i evaluaciju.
 - `cv`: Kros-validacija sa 10 foldova.
 
 
