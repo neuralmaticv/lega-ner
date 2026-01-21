@@ -1,0 +1,77 @@
+{
+  "description": "NER test cases for BCMS (Bosnian, Croatian, Montenegrin, Serbian) legal domain",
+  "test_cases": [
+    {
+      "id": 1,
+      "region": "Serbia",
+      "text": "Viši sud u Beogradu, sudija Marko Petrović, u pravnoj stvari tužioca Jovana Markovića iz Novog Sada, Bulevar Oslobođenja 45, JMBG 0101985710234, protiv tuženog Alfa Komerc d.o.o. Beograd, PIB 123456789, radi naknade štete u iznosu od 750.000,00 dinara, dana 15.03.2024. godine donosi presudu broj P-1234/23.",
+      "expected_entities": ["Viši sud u Beogradu (COURT)", "Marko Petrović (PER)", "Jovana Markovića (PER)", "Novog Sada (TOP)", "Bulevar Oslobođenja 45 (ADR)", "0101985710234 (IDPER)", "Alfa Komerc d.o.o. (COM)", "Beograd (TOP)", "123456789 (IDTAX)", "750.000,00 dinara (MONEY)", "15.03.2024. godine (DATE)", "P-1234/23 (REF)"]
+    },
+    {
+      "id": 2,
+      "region": "Croatia",
+      "text": "Trgovački sud u Zagrebu, sutkinja Ana Horvat, u postupku predlagatelja Ivana Kovačića iz Splita, OIB 12345678901, protiv protivnika osiguranja Delta Trgovina d.d. Zagreb, OIB 98765432109, temeljem članka 186. Zakona o obveznim odnosima, dana 22.01.2024. donosi rješenje o osiguranju dokaza.",
+      "expected_entities": ["Trgovački sud u Zagrebu (COURT)", "Ana Horvat (PER)", "Ivana Kovačića (PER)", "Splita (TOP)", "12345678901 (IDPER)", "Delta Trgovina d.d. (COM)", "Zagreb (TOP)", "98765432109 (IDTAX)", "članka 186. Zakona o obveznim odnosima (LAW)", "22.01.2024. (DATE)"]
+    },
+    {
+      "id": 3,
+      "region": "Bosnia",
+      "text": "Kantonalni sud u Sarajevu, sudija Amer Hadžić, u krivičnom predmetu protiv optuženog Emira Begića iz Mostara, ul. Maršala Tita 78, JMB 0506987123456, zbog krivičnog djela iz člana 289. Krivičnog zakona Federacije BiH, vrijednosti 45.000,00 KM, zakazuje glavnu raspravu za dan 10.04.2024. godine.",
+      "expected_entities": ["Kantonalni sud u Sarajevu (COURT)", "Amer Hadžić (PER)", "Emira Begića (PER)", "Mostara (TOP)", "ul. Maršala Tita 78 (ADR)", "0506987123456 (IDPER)", "člana 289. Krivičnog zakona Federacije BiH (LAW)", "45.000,00 KM (MONEY)", "10.04.2024. godine (DATE)"]
+    },
+    {
+      "id": 4,
+      "region": "Montenegro",
+      "text": "Osnovni sud u Podgorici, u parničnom postupku tužioca Nikole Vujovića iz Nikšića, Njegoševa 23, protiv tuženog Crnogorski Telekom a.d. Podgorica, MB 02345678, na osnovu člana 154. Zakona o obligacionim odnosima, dosudio je naknadu od 12.500,00 EUR na ime pretrpljene štete.",
+      "expected_entities": ["Osnovni sud u Podgorici (COURT)", "Nikole Vujovića (PER)", "Nikšića (TOP)", "Njegoševa 23 (ADR)", "Crnogorski Telekom a.d. (COM)", "Podgorica (TOP)", "02345678 (IDCOM)", "člana 154. Zakona o obligacionim odnosima (LAW)", "12.500,00 EUR (MONEY)"]
+    },
+    {
+      "id": 5,
+      "region": "Serbia",
+      "text": "Apelacioni sud u Nišu odbija žalbu tuženog Gradska Toplana a.d. Kragujevac, izjavljenu protiv presude Osnovnog suda u Kragujevcu P-567/22 od 05.09.2023. godine, kojom je obavezan da tužiocu Milanu Stankoviću isplati iznos od 320.000 dinara sa zakonskom zateznom kamatom počev od 01.01.2023. godine.",
+      "expected_entities": ["Apelacioni sud u Nišu (COURT)", "Gradska Toplana a.d. (COM)", "Kragujevac (TOP)", "Osnovnog suda u Kragujevcu (COURT)", "P-567/22 (REF)", "05.09.2023. godine (DATE)", "Milanu Stankoviću (PER)", "320.000 dinara (MONEY)", "01.01.2023. godine (DATE)"]
+    },
+    {
+      "id": 6,
+      "region": "Croatia",
+      "text": "Županijski sud u Rijeci potvrđuje optužnicu Županijskog državnog odvjetništva u Rijeci protiv okrivljenika Marka Babića iz Osijeka, Vukovarska 112, i okrivljenice Ane Jurić iz Pule, zbog kaznenog djela prijevare iz članka 236. Kaznenog zakona, počinjenog dana 15.07.2022. godine na štetu oštećenika HEP d.d. Zagreb u iznosu od 89.000,00 EUR.",
+      "expected_entities": ["Županijski sud u Rijeci (COURT)", "Županijskog državnog odvjetništva u Rijeci (INST)", "Marka Babića (PER)", "Osijeka (TOP)", "Vukovarska 112 (ADR)", "Ane Jurić (PER)", "Pule (TOP)", "članka 236. Kaznenog zakona (LAW)", "15.07.2022. godine (DATE)", "HEP d.d. (COM)", "Zagreb (TOP)", "89.000,00 EUR (MONEY)"]
+    },
+    {
+      "id": 7,
+      "region": "Bosnia",
+      "text": "Okružni privredni sud u Banjoj Luci, u stečajnom postupku nad stečajnim dužnikom Krajina Export d.o.o. Prijedor, MB 12345678, PIB 401234567, na prijedlog stečajnog upravnika Gorana Savića, zakazuje ročište za ispitivanje potraživanja u ukupnom iznosu od 2.350.000,00 KM za dan 28.05.2024. godine u 10:00 časova.",
+      "expected_entities": ["Okružni privredni sud u Banjoj Luci (COURT)", "Krajina Export d.o.o. (COM)", "Prijedor (TOP)", "12345678 (IDCOM)", "401234567 (IDTAX)", "Gorana Savića (PER)", "2.350.000,00 KM (MONEY)", "28.05.2024. godine (DATE)"]
+    },
+    {
+      "id": 8,
+      "region": "Mixed",
+      "text": "Advokat Petar Nikolić iz Beograda, tel. 011/123-4567, e-mail: petar@advokatns.rs, zastupa klijenta Mirka Ilića, vozača vozila reg. oznaka BG-456-XY, u sporu protiv osiguravajućeg društva Dunav Osiguranje a.d.o. Beograd, račun broj 160-12345-67, povodom saobraćajne nezgode na parceli k.p. 1234/1 KO Voždovac.",
+      "expected_entities": ["Petar Nikolić (PER)", "Beograda (TOP)", "011/123-4567 (CONTACT)", "petar@advokatns.rs (CONTACT)", "Mirka Ilića (PER)", "BG-456-XY (NUMCAR)", "Dunav Osiguranje a.d.o. (COM)", "Beograd (TOP)", "160-12345-67 (NUMACC)", "k.p. 1234/1 KO Voždovac (NUMPLOT)"]
+    },
+    {
+      "id": 9,
+      "region": "Serbia",
+      "text": "Ministarstvo pravde Republike Srbije i Agencija za privredne registre obaveštavaju da je firma Beta Solutions d.o.o. Novi Sad, matični broj 20123456, brisana iz registra dana 31.12.2023. godine na osnovu rešenja Privrednog suda u Novom Sadu St-45/2023.",
+      "expected_entities": ["Ministarstvo pravde Republike Srbije (INST)", "Agencija za privredne registre (INST)", "Beta Solutions d.o.o. (COM)", "Novi Sad (TOP)", "20123456 (IDCOM)", "31.12.2023. godine (DATE)", "Privrednog suda u Novom Sadu (COURT)", "St-45/2023 (REF)"]
+    },
+    {
+      "id": 10,
+      "region": "Croatia",
+      "text": "Ustavni sud Republike Hrvatske, u postupku pokrenutom ustavnom tužbom podnositelja Josipa Mandića iz Dubrovnika, OIB 11122233344, protiv presude Vrhovnog suda Republike Hrvatske Rev-789/2023 od 18.10.2023., kojom je odbijen njegov zahtjev za reviziju u iznosu od 156.000,00 HRK, donosi odluku.",
+      "expected_entities": ["Ustavni sud Republike Hrvatske (COURT)", "Josipa Mandića (PER)", "Dubrovnika (TOP)", "11122233344 (IDPER)", "Vrhovnog suda Republike Hrvatske (COURT)", "Rev-789/2023 (REF)", "18.10.2023. (DATE)", "156.000,00 HRK (MONEY)"]
+    },
+    {
+      "id": 11,
+      "region": "Negative",
+      "text": "Sud je utvrdio da nema osnova za pokretanje postupka u ovom predmetu jer nisu ispunjeni zakonski uslovi za podnošenje tužbe.",
+      "expected_entities": []
+    },
+    {
+      "id": 12,
+      "region": "Mixed",
+      "text": "Shodno članu 25. Zakona o parničnom postupku i članu 12. Pravilnika o sudskim taksama, stranka je dužna uplatiti sudsku taksu u roku od 8 dana od prijema rješenja.",
+      "expected_entities": ["članu 25. Zakona o parničnom postupku (LAW)", "članu 12. Pravilnika o sudskim taksama (LAW)"]
+    }
+  ]
+}
